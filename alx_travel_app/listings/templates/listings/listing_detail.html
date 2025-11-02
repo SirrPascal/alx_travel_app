@@ -1,0 +1,67 @@
+{% extends 'listings/base.html' %}
+
+{% block title %}{{ listing.title }} | ALX Travel{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'listing_list' %}">Home</a></li>
+            <li class="breadcrumb-item active">{{ listing.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-8">
+            {% if listing.image %}
+            <img src="{{ listing.image.url }}" class="img-fluid rounded" alt="{{ listing.title }}">
+            {% else %}
+            <div class="bg-light text-center py-5 rounded">
+                <i class="fas fa-image fa-5x text-secondary"></i>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">{{ listing.title }}</h1>
+                    <p class="text-muted"><i class="fas fa-map-marker-alt"></i> {{ listing.location }}</p>
+                    <h3 class="text-primary">${{ listing.price }}</h3>
+                    <p class="badge bg-{{ listing.status|yesno:'success,warning' }}">{{ listing.status|title }}</p>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <p><strong>Category:</strong> {{ listing.category.name }}</p>
+                    <p><strong>Listed:</strong> {{ listing.created_at|date:"F j, Y" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Reviews</h3>
+            <hr>
+            {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                <span class="text-warning">★</span>
+                                {% else %}
+                                <span class="text-secondary">★</span>
+                                {% endif %}
+                            {% endfor %}
+                        </h5>
+                        <small class="text-muted">{{ review.created_at|date:"F j, Y" }}</small>
+                    </div>
+                    <p class="card-text">{{ review.comment }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>No reviews yet. Be the first to review this listing!</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
