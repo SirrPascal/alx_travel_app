@@ -1,49 +1,68 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environment
-.venv/
-venv/
-ENV/
-env/
-
-# Django stuff:
+# Django
 *.log
 *.pot
 *.pyc
-*.pyo
-*.db
+__pycache__/
+local_settings.py
 db.sqlite3
+db.sqlite3-journal
 media/
-staticfiles/
-
-# MySQL database dumps
-*.sql
 
 # Environment variables
 .env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# VS Code settings
+# IDE
 .vscode/
-
-# PyCharm settings
 .idea/
+*.swp
+*.swo
 
-# OS files
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Database
+*.sql
+*.sqlite
+
+# Static files
+staticfiles/
+static/
+
+# Media files
+media/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Backup files
+*.bak
+
+# OS
 .DS_Store
 Thumbs.db
-
-# Coverage reports
-htmlcov/
-.coverage
-
-# Test / debug files
-*.pytest_cache/
-*.tox/
-.pytest_cache/
-
-# Django migrations (optional, can be tracked if you want)
-*/migrations/*.pyc
-*/migrations/__pycache__/
